@@ -1,0 +1,4 @@
+combinationKey,unmetCareNeedBias,unmetNeedExponent,networkSizeParam,relocationCostParam
+0,0.3,0.5,5,0.1
+,0.5,1,10,0.5
+,0.7,1.5,15,1
