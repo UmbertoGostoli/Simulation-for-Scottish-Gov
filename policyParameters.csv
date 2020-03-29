@@ -1,2 +1,2 @@
-combinationKey,taxBreakRate,socialSupportLevel
-2,1,3
+combinationKey,childCareTaxFreeRate,freeChildCareHoursPreSchool,publicCareAgeLimit,socialCareTaxFreeRate
+2,0.8,32,60,0.5
