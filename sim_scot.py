@@ -7,7 +7,7 @@ from house import Map
 import random
 import math
 import pylab
-import Tkinter
+# import Tkinter
 import struct
 import time
 import sys
@@ -174,11 +174,11 @@ class Sim:
         self.socialCareNetwork = nx.DiGraph()
 
         # if self.p['interactiveGraphics']:
-        self.window = Tkinter.Tk()
-        self.canvas = Tkinter.Canvas(self.window,
-                                width=self.p['screenWidth'],
-                                height=self.p['screenHeight'],
-                                background=self.p['bgColour'])
+#        self.window = Tkinter.Tk()
+#        self.canvas = Tkinter.Canvas(self.window,
+#                                width=self.p['screenWidth'],
+#                                height=self.p['screenHeight'],
+#                                background=self.p['bgColour'])
 
 
     def run(self, policy, policyParams, seed):
@@ -519,9 +519,7 @@ class Sim:
         """Run one year of simulated time."""
 
         ##print "Sim Year: ", self.year, "OH count:", len(self.map.occupiedHouses), "H count:", len(self.map.allHouses)
-        
-        # self.checkHouseholds(0)
-        
+      
         startYear = time.time()
         
         
@@ -563,10 +561,7 @@ class Sim:
         
         self.doAgeTransitions(policyFolder)
         
-        # print 'Doing fucntion 10...'
-        
-        # self.checkHouseholds(0)
-        
+      
         self.doBirths(policyFolder)
         
         # print 'Doing fucntion 11...'
@@ -607,8 +602,8 @@ class Sim:
         
         # print 'Doing fucntion 17...'
         
-        self.pyramid.update(self.year, self.p['num5YearAgeClasses'], self.p['numCareLevels'],
-                            self.p['pixelsInPopPyramid'], self.pop.livingPeople)
+#        self.pyramid.update(self.year, self.p['num5YearAgeClasses'], self.p['numCareLevels'],
+#                            self.p['pixelsInPopPyramid'], self.pop.livingPeople)
         
         
         # print 'Doing fucntion 18...'
@@ -626,100 +621,6 @@ class Sim:
         
         print 'Year execution time: ' + str(endYear - startYear)
 
-            
-        # print 'Did doStats'
-
-    def checkHouseholds(self, n):
-        
-#        for member in self.pop.livingPeople:
-#            if member.partner != None and member.house != member.partner.house:
-#                print 'Step: ' + str(n)
-#                print 'Couple not living together'
-#                print member.id
-#                print member.dead
-#                print member.independentStatus
-#                print member.yearMarried
-#                print member.partner.id
-#                print member.partner.partner.id
-#                print member.partner.dead
-#                print member.partner.independentStatus
-#                print member.partner.yearMarried
-#                sys.exit()
-    
-        for house in self.map.occupiedHouses:
-            
-            household = house.occupants
-            
-#            if len(household) != len(set(household)):
-#                print 'Step: ' + str(n)
-#                print 'Error: person counted twice'
-#                sys.exit()
-                
-#            if len(household) == 0:
-#                print 'Step: ' + str(n)
-#                print 'Error: occupied house is empty!'
-#                sys.exit()
-                
-            married = [x for x in household if x.partner != None]
-            
-#            if len(married) > 2:
-#                print 'Step: ' + str(n)
-#                print 'Error: more than a couple in a house'
-#                for member in married:
-#                    print member.id
-#                    print member.age
-#                    print member.status
-#                    print member.independentStatus
-#                    print member.classRank
-#                    print member.sex
-#                    print member.income
-#                    print member.careNeedLevel
-#                    print 'Person partner id: ' + str(member.partner.id)
-#                sys.exit()
-                
-#            if len(married) == 1:
-#                print 'Step: ' + str(n)
-#                print 'Error: married person not living with partner'
-#                sys.exit()
-           
-            independentPeople = [x for x in household if x.independentStatus == True]
-            
-#            if len(independentPeople) == 0:
-#                print 'Error: no independent people in the house'
-#                print 'Step: ' + str(n)
-#                for member in household:
-#                    print member.id
-#                    print member.age
-#                    print member.status
-#                    print member.classRank
-#                    print member.sex
-#                    print member.income
-#                    print member.careNeedLevel
-#                    print 'Father: ' + str(member.father.id)
-#                    print member.father.dead
-#                    print member.father.deadYear
-#                    print member.father.yearMarried
-#                    print member.father.yearDivorced
-#                    print 'Mother: ' + str(member.mother.id)
-#                    print member.mother.dead
-#                    print member.mother.deadYear
-#                    print member.mother.yearMarried
-#                    print member.mother.yearDivorced
-#                    
-#                    if member.partner != None:
-#                        print 'Person partner id: ' + str(member.partner.id)
-#                    if member.mother.partner != None:
-#                        print 'Person mother partner id: ' + str(member.mother.partner.id)
-#                        print 'Person mother partner children: ' + str([x.id for x in member.mother.partner.children])
-#                        if member.mother.partner.partner != None:
-#                            print 'Person father partner id: ' + str(member.mother.partner.partner.id)
-#                    if member.father.partner != None:
-#                        print 'Person father partner id: ' + str(member.father.partner.id)
-#                        print 'Person father partner children: ' + str([x.id for x in member.father.partner.children])
-#                        if member.father.partner.partner != None:
-#                            print 'Person father partner partner id: ' + str(member.father.partner.partner.id)
-#                sys.exit()
-                
             
 ####################   doDeath - SES version    ################################################
     def computeClassShares(self):
@@ -839,9 +740,9 @@ class Sim:
                 if age > 110:
                     age = 110
                 if person.sex == 'male':
-                    rawRate = self.death_male[age, self.year-self.p['mortalityDataFrom']]
+                    rawRate = self.death_male[age, self.year-int(self.p['mortalityDataFrom'])]
                 if person.sex == 'female':
-                    rawRate = self.death_female[age, self.year-self.p['mortalityDataFrom']]
+                    rawRate = self.death_female[age, self.year-int(self.p['mortalityDataFrom'])]
                     
                 classPop = [x for x in self.pop.livingPeople if x.careNeedLevel == person.careNeedLevel]
                 
@@ -5387,7 +5288,7 @@ class Sim:
                 rawRate = self.p['growingPopBirthProb']
                 birthProb = self.computeBirthProb(self.p['fertilityBias'], rawRate, womanClassRank)
             else:
-                rawRate = self.fert_data[(self.year - woman.birthdate)-16, self.year-self.p['fertilityDataFrom']]
+                rawRate = self.fert_data[(self.year - woman.birthdate)-16, self.year-int(self.p['fertilityDataFrom'])]
                 birthProb = self.computeBirthProb(self.p['fertilityBias'], rawRate, womanClassRank)/marriedPercentage[womanClassRank]
                 
             # birthProb = self.computeBirthProb(self.p['fertilityBias'], rawRate, woman.classRank)
