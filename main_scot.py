@@ -102,7 +102,7 @@ def init_params():
     #### SES-version parameters   ######
     
     p['maleMortalityBias'] = 0.8   ### SES death bias
-    p['femaleMortalityBias'] = 0.85
+    p['femaleMortalityBias'] = 0.9
     p['careNeedBias'] = 0.9   ### Care Need Level death bias
     p['unmetCareNeedBias'] = 0.5  ### Unmet Care Need death bias
     
@@ -129,10 +129,10 @@ def init_params():
     p['quantumCare'] = 4
     
     # Child Care params
-    p['childCareDemand'] = 56 #48
+    p['childCareDemand'] = 60 #48
     p['maxFormalChildCare'] = 48
     p['ageTeenagers'] = 12
-    p['zeroYearCare'] = 80.0 
+    p['zeroYearCare'] = 84.0 
     
     # Public Child Care Provision Parameters
     # 1st policy parameter
@@ -169,10 +169,11 @@ def init_params():
     p['distanceExp'] = 0.5
     p['networkExp'] = 0.4
     
-    p['incomeCareParam'] = 0.00005 # 0.0001
-    p['wealthCareParam'] = 0.0000004 # 0.00000005
+    p['incomeCareParam'] = 0.0004 # 0.00005
+    p['wealthCareParam'] = 0.000001 # 0.00000005
     
-    p['betaInformalCare'] = 1.2
+    p['betaInformalCare'] = 1.1
+    
     p['betaFormalCare'] = 1.0
     p['shareFinancialWealth'] = 0.3
     p['formalCareDiscountFactor'] = 0.5
@@ -188,10 +189,16 @@ def init_params():
     p['incomeBeta'] = 0.01
     p['careBeta'] = 0.01
     
-    p['retiredSupply'] = [64.0, 32.0, 16.0, 8.0] # [56.0, 28.0, 16.0, 8.0]
-    p['employedSupply'] = [24.0, 16.0, 8.0, 4.0] # [16.0, 12.0, 8.0, 4.0]
-    p['studentSupply'] = [20.0, 12.0, 8.0, 0.0] # [16.0, 8.0, 4.0, 0.0]
-    p['teenagerSupply'] = [16.0, 0.0, 0.0, 0.0] # [12.0, 0.0, 0.0, 0.0]
+    p['networkDistanceDiscount'] = 0.5
+    p['retiredMaxSupply'] = 64
+    p['employedMaxSupply'] = 24
+    p['studentMaxSupply'] = 24
+    p['teenagerMaxSupply'] = 16
+        
+#    p['retiredSupply'] = [64.0, 32.0, 16.0, 8.0] # [56.0, 28.0, 16.0, 8.0]
+#    p['employedSupply'] = [24.0, 16.0, 8.0, 4.0] # [16.0, 12.0, 8.0, 4.0]
+#    p['studentSupply'] = [24.0, 12.0, 4.0, 0.0] # [16.0, 8.0, 4.0, 0.0]
+#    p['teenagerSupply'] = [16.0, 0.0, 0.0, 0.0] # [12.0, 0.0, 0.0, 0.0]
     
     # Marriages params
     p['incomeMarriageParam'] = 0.025
