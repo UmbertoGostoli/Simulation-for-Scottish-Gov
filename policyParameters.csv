@@ -1,2 +1,2 @@
-combinationKey,childCareTaxFreeRate,freeChildCareHoursPreSchool,publicCareAgeLimit,socialCareTaxFreeRate
-2,0.8,32,60,0.5
+combinationKey,pandemic
+0,TRUE

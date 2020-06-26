@@ -21,11 +21,13 @@ def meta_params():
     m = OrderedDict() # For meta-parameters file
     
     m['numRepeats'] = 1
-    m['initialPop'] = 1000
+    m['initialPop'] = 2000
     m['startYear'] = 1855
     m['endYear'] = 2050
     m['mortalityDataFrom'] = 1855
     m['fertilityDataFrom'] = 1945
+    m['migrationDataFrom'] = 1952
+    m['migrationDataTo'] = 2019
     m['thePresent'] = 2012
     m['statsCollectFrom'] = 1960
     m['policyStartYear'] = 2020
@@ -102,7 +104,7 @@ def init_params():
     #### SES-version parameters   ######
     
     p['maleMortalityBias'] = 0.8   ### SES death bias
-    p['femaleMortalityBias'] = 0.85
+    p['femaleMortalityBias'] = 0.9
     p['careNeedBias'] = 0.9   ### Care Need Level death bias
     p['unmetCareNeedBias'] = 0.5  ### Unmet Care Need death bias
     
@@ -129,10 +131,10 @@ def init_params():
     p['quantumCare'] = 4
     
     # Child Care params
-    p['childCareDemand'] = 56 #48
+    p['childCareDemand'] = 60 #48
     p['maxFormalChildCare'] = 48
     p['ageTeenagers'] = 12
-    p['zeroYearCare'] = 80.0 
+    p['zeroYearCare'] = 84.0 
     
     # Public Child Care Provision Parameters
     # 1st policy parameter
@@ -161,18 +163,22 @@ def init_params():
     p['publicCareAgeLimit'] = 65 # 1000
     p['minWealthMeansTest'] = 17000.0
     p['maxWealthMeansTest'] = 27250.0
+    p['careHomeFees'] = 750.0
+    p['maxAccomodationSupport'] = 630.0
+    p['freePersonalCare'] = 249.0
     p['wealthToPoundReduction'] = 250.0
-    p['residentialCost'] = 574.42
+    p['contributionForCareRatio'] = 0.5
     p['partialContributionRate'] = 0.5
     p['minimumIncomeGuarantee'] = 189.0
     
     p['distanceExp'] = 0.5
     p['networkExp'] = 0.4
     
-    p['incomeCareParam'] = 0.00005 # 0.0001
-    p['wealthCareParam'] = 0.0000004 # 0.00000005
+    p['incomeCareParam'] = 0.0004 # 0.00005
+    p['wealthCareParam'] = 0.000001 # 0.00000005
     
-    p['betaInformalCare'] = 1.2
+    p['betaInformalCare'] = 1.1
+    
     p['betaFormalCare'] = 1.0
     p['shareFinancialWealth'] = 0.3
     p['formalCareDiscountFactor'] = 0.5
@@ -188,10 +194,21 @@ def init_params():
     p['incomeBeta'] = 0.01
     p['careBeta'] = 0.01
     
-    p['retiredSupply'] = [64.0, 32.0, 16.0, 8.0] # [56.0, 28.0, 16.0, 8.0]
-    p['employedSupply'] = [24.0, 16.0, 8.0, 4.0] # [16.0, 12.0, 8.0, 4.0]
-    p['studentSupply'] = [20.0, 12.0, 8.0, 0.0] # [16.0, 8.0, 4.0, 0.0]
-    p['teenagerSupply'] = [16.0, 0.0, 0.0, 0.0] # [12.0, 0.0, 0.0, 0.0]
+    p['pandemic'] = False
+    p['lockdown'] = False
+    p['alternation'] = 0
+    p['virusYears'] = [2020, 2022, 2024]
+    
+    p['networkDistanceDiscount'] = 0.5
+    p['retiredMaxSupply'] = 64
+    p['employedMaxSupply'] = 24
+    p['studentMaxSupply'] = 24
+    p['teenagerMaxSupply'] = 16
+        
+#    p['retiredSupply'] = [64.0, 32.0, 16.0, 8.0] # [56.0, 28.0, 16.0, 8.0]
+#    p['employedSupply'] = [24.0, 16.0, 8.0, 4.0] # [16.0, 12.0, 8.0, 4.0]
+#    p['studentSupply'] = [24.0, 12.0, 4.0, 0.0] # [16.0, 8.0, 4.0, 0.0]
+#    p['teenagerSupply'] = [16.0, 0.0, 0.0, 0.0] # [12.0, 0.0, 0.0, 0.0]
     
     # Marriages params
     p['incomeMarriageParam'] = 0.025
@@ -256,6 +273,12 @@ def init_params():
     p['ageOfAdulthood'] = 16
     p['ageOfRetirement'] = 65
     p['probOutOfTownStudent'] = 0.5
+    
+    # Migration parameters
+    p['minMigrationAge'] = 20
+    p['maxMigrationAge'] = 35
+    p['medianMigrantAge'] = 27
+    p['betaMigration'] = 0.5
     
     ## Marriage and divorce statistics (partnerships really)
     p['basicFemaleMarriageProb'] = 0.25
@@ -371,6 +394,8 @@ def loadScenarios():
             newScenario['scenarioIndex'][0] = index
             index += 1
             scenarios.append(newScenario)
+        
+    print 'The number of scenarios is: ' + str(len(scenarios))
 
     return scenarios
 

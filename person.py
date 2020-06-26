@@ -42,6 +42,9 @@ class Person:
         self.workExperience = we
         self.careNeedLevel = 0
         self.socialWork = 0
+        self.totalFormalCare = 0
+        self.inCareHome = False
+        self.fpcReceiver = False
         # Unmet Need variables 
         self.careNetwork = nx.DiGraph()
         self.careDemand = 0
@@ -54,6 +57,9 @@ class Person:
         self.classRank = cr
         self.parentsClassRank = pcr
         self.dead = False
+        self.otherDeath = False
+        self.virusDeath = False
+        
         self.partner = None
         if sex == 'random':
             self.sex = random.choice(['male', 'female'])
