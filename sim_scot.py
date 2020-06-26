@@ -901,9 +901,9 @@ class Sim:
                 if age > 110:
                     age = 110
                 if person.sex == 'male':
-                    rawRate = self.death_male[age, self.year-self.p['mortalityDataFrom']]
+                    rawRate = self.death_male[age, int(self.year-self.p['mortalityDataFrom'])]
                 if person.sex == 'female':
-                    rawRate = self.death_female[age, self.year-self.p['mortalityDataFrom']]
+                    rawRate = self.death_female[age, int(self.year-self.p['mortalityDataFrom'])]
                     
                 classPop = [x for x in self.pop.livingPeople if x.careNeedLevel == person.careNeedLevel]
                 
@@ -5652,7 +5652,7 @@ class Sim:
                 rawRate = self.p['growingPopBirthProb']
                 birthProb = self.computeBirthProb(self.p['fertilityBias'], rawRate, womanClassRank)
             else:
-                rawRate = self.fert_data[(self.year - woman.birthdate)-16, self.year-self.p['fertilityDataFrom']]
+                rawRate = self.fert_data[(self.year - woman.birthdate)-16, int(self.year-self.p['fertilityDataFrom'])]
                 birthProb = self.computeBirthProb(self.p['fertilityBias'], rawRate, womanClassRank)/marriedPercentage[womanClassRank]
                 
             # birthProb = self.computeBirthProb(self.p['fertilityBias'], rawRate, woman.classRank)
