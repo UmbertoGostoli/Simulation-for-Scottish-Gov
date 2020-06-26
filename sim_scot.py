@@ -182,11 +182,11 @@ class Sim:
         self.socialCareNetwork = nx.DiGraph()
 
         # if self.p['interactiveGraphics']:
-        self.window = Tkinter.Tk()
-        self.canvas = Tkinter.Canvas(self.window,
-                                width=self.p['screenWidth'],
-                                height=self.p['screenHeight'],
-                                background=self.p['bgColour'])
+       # self.window = Tkinter.Tk()
+       # self.canvas = Tkinter.Canvas(self.window,
+       #                         width=self.p['screenWidth'],
+       #                         height=self.p['screenHeight'],
+       #                         background=self.p['bgColour'])
 
 
     def run(self, policy, policyParams, seed):
